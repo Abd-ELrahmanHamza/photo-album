@@ -1,6 +1,7 @@
 // Import CSS
 import "./CardItem.css";
 
+// Import globals
 import { columnWidth } from "../../globals";
 
 const CardItem = ({ item, height }) => {

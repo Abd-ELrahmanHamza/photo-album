@@ -1,3 +1,4 @@
+// Import bootstrap components
 import Spinner from "react-bootstrap/Spinner";
 
 function Loading() {

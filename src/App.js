@@ -1,22 +1,11 @@
 import "./App.css";
 import React from "react";
-import { render } from "react-dom";
-import {
-  CellMeasurer,
-  CellMeasurerCache,
-  createMasonryCellPositioner,
-  Masonry,
-} from "react-virtualized";
 import ImageMeasurer from "react-virtualized-image-measurer";
 import list from "./data";
-
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
 
 import keyMapper from "./helpers/keyMapper";
 
 import {
-  columnWidth,
   defaultHeight,
   defaultWidth,
   cache,

@@ -1,5 +1,10 @@
 import React from "react";
-import { CellMeasurer, Masonry } from "react-virtualized";
+import {
+  CellMeasurer,
+  Masonry,
+  WindowScroller,
+  AutoSizer,
+} from "react-virtualized";
 
 import keyMapper from "../helpers/keyMapper";
 
@@ -10,13 +15,10 @@ const MasonryComponent = ({ itemsWithSizes, setRef }) => {
   const cellRenderer = ({ index, key, parent, style }) => {
     const { item, size } = itemsWithSizes[index];
     const height = columnWidth * (size.height / size.width) || defaultHeight;
-    let id = 0;
     return (
       <CellMeasurer cache={cache} index={index} key={key} parent={parent}>
         <div style={style}>
-          {item.image && (
-            <CardItem key={id++} height={height} item={item}></CardItem>
-          )}
+          {item.image && <CardItem height={height} item={item}></CardItem>}
         </div>
       </CellMeasurer>
     );
@@ -29,7 +31,7 @@ const MasonryComponent = ({ itemsWithSizes, setRef }) => {
       cellPositioner={cellPositioner}
       cellRenderer={cellRenderer}
       height={800}
-      width={1650}
+      width={window.innerWidth}
       keyMapper={keyMapper}
       ref={setRef}
     />

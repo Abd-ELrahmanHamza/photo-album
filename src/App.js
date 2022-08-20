@@ -16,8 +16,14 @@ import {
 import MasonryComponent from "./Components/MasonryComponent";
 import { Container } from "react-bootstrap";
 
+// We need to make sure images are loaded from scratch every time for this demo
+const noCacheList = list.map((item, index) => ({
+  title: index + ". " + item.title,
+  image: item.image + (item.image ? "?noCache=" + Math.random() : "")
+}));
+
 const App = () => {
-  const [images, setImages] = useState(list);
+  const [images, setImages] = useState(noCacheList);
   let masonryRef = null;
 
   // this shows how to significantly change the input array, if items will be only appended this recalculation is not needed
@@ -30,7 +36,7 @@ const App = () => {
 
   const setMasonry = (node) => (masonryRef = node);
   return (
-    <Container fluid>
+    <div>
       <h1>Shutterstock</h1>
       <button onClick={shorten}>Resize</button>
       <ImageMeasurer
@@ -57,7 +63,7 @@ const App = () => {
           />
         )}
       </ImageMeasurer>
-    </Container>
+    </div>
   );
 };
 

@@ -17,12 +17,13 @@ const cache = new CellMeasurerCache({
 // Our masonry layout will use 3 columns with a 10px gutter between
 const cellPositionerConfig = {
   cellMeasurerCache: cache,
-  columnCount: 7,
+  columnCount: 8,
   columnWidth,
   spacer: 10,
 };
 
 const cellPositioner = createMasonryCellPositioner(cellPositionerConfig);
+
 
 export {
   columnWidth,

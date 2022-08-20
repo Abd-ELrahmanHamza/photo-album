@@ -6,7 +6,7 @@ import keyMapper from "../helpers/keyMapper";
 import CardItem from "./CardItem/CardItem";
 
 import { columnWidth, defaultHeight, cache, cellPositioner } from "../globals";
-const MasonryComponent = ({ itemsWithSizes, setRef }) => {
+const MasonryComponent = ({ itemsWithSizes, setRef, pageCount }) => {
   const cellRenderer = ({ index, key, parent, style }) => {
     const { item } = itemsWithSizes[index];
     const height = columnWidth * (item.height / item.width) || defaultHeight;
@@ -28,7 +28,7 @@ const MasonryComponent = ({ itemsWithSizes, setRef }) => {
       cellMeasurerCache={cache}
       cellPositioner={cellPositioner}
       cellRenderer={cellRenderer}
-      height={2000}
+      height={pageCount * window.innerHeight}
       width={window.innerWidth - 50}
       keyMapper={keyMapper}
       ref={setRef}

@@ -27,7 +27,7 @@ import useFetch from "./Hooks/useFetch";
 
 const App = () => {
   const [url, setUrl] = useState(
-    `https://picsum.photos/v2/list?page=1&limit=20`
+    `https://picsum.photos/v2/list?page=1&limit=15`
   );
   const { error, isPending, data } = useFetch(url);
   const [images, setImages] = useState([]);
@@ -50,7 +50,7 @@ const App = () => {
     masonryRef.clearCellPositions();
     // setImages([...images.slice(1)]);
     console.log(pageCount);
-    setUrl(`https://picsum.photos/v2/list?page=${pageCount}&limit=20`);
+    setUrl(`https://picsum.photos/v2/list?page=${pageCount}&limit=10`);
     setPageCount(pageCount + 1);
   };
 
@@ -86,14 +86,15 @@ const App = () => {
                 <MasonryComponent
                   key={1}
                   setRef={setMasonry}
+                  pageCount={pageCount}
                   itemsWithSizes={itemsWithSizes}
                 />
               )}
             </ImageMeasurer>
           </div>
-        )}
+        )}{" "}
         <Button className="m-auto" onClick={shorten}>
-          Resize
+          Load More
         </Button>
       </div>
     </>

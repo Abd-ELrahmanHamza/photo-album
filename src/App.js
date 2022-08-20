@@ -27,18 +27,15 @@ import useFetch from "./Hooks/useFetch";
 
 const App = () => {
   const { error, isPending, data } = useFetch(
-    `https://picsum.photos/v2/list?page=2&limit=30`
+    `https://picsum.photos/v2/list?page=2&limit=25`
   );
   const [images, setImages] = useState([]);
   console.log("rendered");
 
   useEffect(() => {
     console.log("fetched");
+    console.log(data);  
     if (data !== null) {
-      const noCacheList = data.map((item, index) => ({
-        title: index + ". " + item.title,
-        image: item.image + (item.image ? "?noCache=" + Math.random() : ""),
-      }));
       setImages([...images, ...data]);
     }
   }, [data]);

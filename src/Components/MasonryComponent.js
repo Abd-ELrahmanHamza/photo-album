@@ -3,7 +3,7 @@ import { CellMeasurer, Masonry } from "react-virtualized";
 
 import keyMapper from "../helpers/keyMapper";
 
-import CardItem from "./CardItem";
+import CardItem from "./CardItem/CardItem";
 
 import { columnWidth, defaultHeight, cache, cellPositioner } from "../globals";
 const MasonryComponent = ({ itemsWithSizes, setRef }) => {

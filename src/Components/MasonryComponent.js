@@ -26,7 +26,7 @@ const MasonryComponent = ({ itemsWithSizes, setRef }) => {
       cellMeasurerCache={cache}
       cellPositioner={cellPositioner}
       cellRenderer={cellRenderer}
-      height={600}
+      height={700}
       width={1698}
       keyMapper={keyMapper}
       ref={setRef}

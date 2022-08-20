@@ -7,8 +7,8 @@ const CardItem = ({ item, height }) => {
   return (
     <Card style={{ width: { columnWidth } }}>
       <Card.Img
-        src={item.image}
-        alt={item.title}
+        src={item.download_url}
+        alt={item.author}
         style={{ height: height, width: columnWidth, display: "block" }}
       />
       <Card.Body>

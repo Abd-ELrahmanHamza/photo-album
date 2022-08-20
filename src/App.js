@@ -1,7 +1,7 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ImageMeasurer from "react-virtualized-image-measurer";
-import list from "./data";
+// import list from "./data";
 
 import keyMapper from "./helpers/keyMapper";
 
@@ -15,16 +15,34 @@ import {
 
 import MasonryComponent from "./Components/MasonryComponent";
 import NavBar from "./Components/NavBar";
-import { Button, Container } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
+import Loading from "./Components/Loading";
+import useFetch from "./Hooks/useFetch";
 
 // We need to make sure images are loaded from scratch every time for this demo
-const noCacheList = list.map((item, index) => ({
-  title: index + ". " + item.title,
-  image: item.image + (item.image ? "?noCache=" + Math.random() : ""),
-}));
+// const noCacheList = list.map((item, index) => ({
+//   title: index + ". " + item.title,
+//   image: item.image + (item.image ? "?noCache=" + Math.random() : ""),
+// }));
 
 const App = () => {
-  const [images, setImages] = useState(noCacheList);
+  const { error, isPending, data } = useFetch(
+    `https://picsum.photos/v2/list?page=2&limit=30`
+  );
+  const [images, setImages] = useState([]);
+  console.log("rendered");
+
+  useEffect(() => {
+    console.log("fetched");
+    if (data !== null) {
+      const noCacheList = data.map((item, index) => ({
+        title: index + ". " + item.title,
+        image: item.image + (item.image ? "?noCache=" + Math.random() : ""),
+      }));
+      setImages([...images, ...data]);
+    }
+  }, [data]);
+
   let masonryRef = null;
 
   // this shows how to significantly change the input array, if items will be only appended this recalculation is not needed
@@ -40,30 +58,36 @@ const App = () => {
     <div>
       <NavBar></NavBar>
       <Button onClick={shorten}>Resize</Button>
-      <ImageMeasurer
-        items={images}
-        image={(item) => item.image}
-        keyMapper={keyMapper}
-        onError={(error, item, src) => {
-          console.error(
-            "Cannot load image",
-            src,
-            "for item",
-            item,
-            "error",
-            error
-          );
-        }}
-        defaultHeight={defaultHeight}
-        defaultWidth={defaultWidth}
-      >
-        {({ itemsWithSizes }) => (
-          <MasonryComponent
-            setRef={setMasonry}
-            itemsWithSizes={itemsWithSizes}
-          />
-        )}
-      </ImageMeasurer>
+      {isPending && (
+        <div className="m-auto">
+          <Loading></Loading>
+        </div>
+      )}
+      {error && (
+        <Alert key={"danger"} variant={"danger"}>
+          {error}
+        </Alert>
+      )}
+      {images && (
+        <ImageMeasurer
+          items={images}
+          image={(item) => item.image}
+          keyMapper={keyMapper}
+          onError={(error, item, src) => {
+            console.log(error, item, src);
+          }}
+          defaultHeight={defaultHeight}
+          defaultWidth={defaultWidth}
+        >
+          {({ itemsWithSizes }) => (
+            <MasonryComponent
+              key={1}
+              setRef={setMasonry}
+              itemsWithSizes={itemsWithSizes}
+            />
+          )}
+        </ImageMeasurer>
+      )}
     </div>
   );
 };

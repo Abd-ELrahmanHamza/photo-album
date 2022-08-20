@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  CellMeasurer,
-  Masonry,
-  WindowScroller,
-  AutoSizer,
-} from "react-virtualized";
+import { CellMeasurer, Masonry } from "react-virtualized";
 
 import keyMapper from "../helpers/keyMapper";
 
@@ -13,12 +8,15 @@ import CardItem from "./CardItem";
 import { columnWidth, defaultHeight, cache, cellPositioner } from "../globals";
 const MasonryComponent = ({ itemsWithSizes, setRef }) => {
   const cellRenderer = ({ index, key, parent, style }) => {
-    const { item, size } = itemsWithSizes[index];
-    const height = columnWidth * (size.height / size.width) || defaultHeight;
+    const { item } = itemsWithSizes[index];
+    const height = columnWidth * (item.height / item.width) || defaultHeight;
+
     return (
       <CellMeasurer cache={cache} index={index} key={key} parent={parent}>
         <div style={style}>
-          {item.image && <CardItem height={height} item={item}></CardItem>}
+          {item.download_url && (
+            <CardItem height={height} item={item}></CardItem>
+          )}
         </div>
       </CellMeasurer>
     );
@@ -30,7 +28,7 @@ const MasonryComponent = ({ itemsWithSizes, setRef }) => {
       cellMeasurerCache={cache}
       cellPositioner={cellPositioner}
       cellRenderer={cellRenderer}
-      height={800}
+      height={700}
       width={window.innerWidth}
       keyMapper={keyMapper}
       ref={setRef}

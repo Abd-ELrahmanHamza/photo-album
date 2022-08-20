@@ -3,9 +3,31 @@ import "./App.css";
 
 // Import Components
 import Album from "./Components/Album/Album";
+import Image from "./Components/Image/Image";
 
+// Import react router dom
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+// Import hooks
+import { useState } from "react";
 const App = () => {
-  return <Album></Album>;
+  //   A state to store all fetched images
+  const [images, setImages] = useState([]);
+
+  return (
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={<Album images={images} setImages={setImages} />}
+        ></Route>
+        <Route
+          path="/Image/:index"
+          element={<Image images={images} />}
+        ></Route>
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;

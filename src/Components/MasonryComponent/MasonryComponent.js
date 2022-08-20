@@ -26,7 +26,7 @@ const MasonryComponent = ({ itemsWithSizes, setRef, pageCount }) => {
       <CellMeasurer cache={cache} index={index} key={key} parent={parent}>
         <div style={style}>
           {item.download_url && (
-            <CardItem height={height} item={item}></CardItem>
+            <CardItem height={height} item={item} index={index}></CardItem>
           )}
         </div>
       </CellMeasurer>

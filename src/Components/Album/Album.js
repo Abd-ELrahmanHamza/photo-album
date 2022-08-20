@@ -27,14 +27,14 @@ import { Button, Alert } from "react-bootstrap";
 // Import custom hooks
 import useFetch from "../../Hooks/useFetch";
 
-const Album = () => {
+const Album = ({ images, setImages }) => {
   //   A state that store the url to fetch data from
   const [url, setUrl] = useState(
     `https://picsum.photos/v2/list?page=1&limit=10`
   );
 
-  //   A state to store all fetched images
-  const [images, setImages] = useState([]);
+  // //   A state to store all fetched images
+  // const [images, setImages] = useState([]);
 
   //   useFetch is a custom hook used to fetch images
   const { error, isPending, data } = useFetch(url);

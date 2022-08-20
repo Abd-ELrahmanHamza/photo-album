@@ -4,14 +4,19 @@ import "./CardItem.css";
 // Import globals
 import { columnWidth } from "../../globals";
 
-const CardItem = ({ item, height }) => {
+// Import react router dom components
+import { Link } from "react-router-dom";
+
+const CardItem = ({ item, height, index }) => {
   return (
-    <img
-      src={item.download_url}
-      alt={item.author}
-      style={{ height: height, width: columnWidth, display: "block" }}
-      className="image"
-    ></img>
+    <Link to={`/Image/${index}`}>
+      <img
+        src={item.download_url}
+        alt={item.author}
+        style={{ height: height, width: columnWidth, display: "block" }}
+        className="image"
+      ></img>
+    </Link>
   );
 };
 

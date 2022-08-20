@@ -14,12 +14,13 @@ import {
 } from "./globals";
 
 import MasonryComponent from "./Components/MasonryComponent";
-import { Container } from "react-bootstrap";
+import NavBar from "./Components/NavBar";
+import { Button, Container } from "react-bootstrap";
 
 // We need to make sure images are loaded from scratch every time for this demo
 const noCacheList = list.map((item, index) => ({
   title: index + ". " + item.title,
-  image: item.image + (item.image ? "?noCache=" + Math.random() : "")
+  image: item.image + (item.image ? "?noCache=" + Math.random() : ""),
 }));
 
 const App = () => {
@@ -37,8 +38,8 @@ const App = () => {
   const setMasonry = (node) => (masonryRef = node);
   return (
     <div>
-      <h1>Shutterstock</h1>
-      <button onClick={shorten}>Resize</button>
+      <NavBar></NavBar>
+      <Button onClick={shorten}>Resize</Button>
       <ImageMeasurer
         items={images}
         image={(item) => item.image}

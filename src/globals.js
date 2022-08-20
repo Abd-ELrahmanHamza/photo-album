@@ -3,7 +3,7 @@ import {
   createMasonryCellPositioner,
 } from "react-virtualized";
 
-const columnWidth = 400;
+const columnWidth = (window.innerWidth - 5 * 15) / 4;
 const defaultHeight = 250;
 const defaultWidth = columnWidth;
 
@@ -23,7 +23,6 @@ const cellPositionerConfig = {
 };
 
 const cellPositioner = createMasonryCellPositioner(cellPositionerConfig);
-
 
 export {
   columnWidth,

@@ -29,7 +29,7 @@ const MasonryComponent = ({ itemsWithSizes, setRef }) => {
       cellPositioner={cellPositioner}
       cellRenderer={cellRenderer}
       height={2000}
-      width={window.innerWidth}
+      width={window.innerWidth - 50}
       keyMapper={keyMapper}
       ref={setRef}
     />

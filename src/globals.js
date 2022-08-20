@@ -3,7 +3,7 @@ import {
   createMasonryCellPositioner,
 } from "react-virtualized";
 
-const columnWidth = 320;
+const columnWidth = 200;
 const defaultHeight = 250;
 const defaultWidth = columnWidth;
 
@@ -17,7 +17,7 @@ const cache = new CellMeasurerCache({
 // Our masonry layout will use 3 columns with a 10px gutter between
 const cellPositionerConfig = {
   cellMeasurerCache: cache,
-  columnCount: 5,
+  columnCount: 7,
   columnWidth,
   spacer: 10,
 };

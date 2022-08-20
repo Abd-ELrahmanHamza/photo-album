@@ -13,21 +13,15 @@ import {
   cellPositionerConfig,
 } from "./globals";
 
-import MasonryComponent from "./Components/MasonryComponent";
-import NavBar from "./Components/NavBar";
+import MasonryComponent from "./Components/MasonryComponent/MasonryComponent";
+import NavBar from "./Components/NavBar/NavBar";
 import { Button, Alert } from "react-bootstrap";
-import Loading from "./Components/Loading";
+import Loading from "./Components/Loading/Loading";
 import useFetch from "./Hooks/useFetch";
-
-// We need to make sure images are loaded from scratch every time for this demo
-// const noCacheList = list.map((item, index) => ({
-//   title: index + ". " + item.title,
-//   image: item.image + (item.image ? "?noCache=" + Math.random() : ""),
-// }));
 
 const App = () => {
   const [url, setUrl] = useState(
-    `https://picsum.photos/v2/list?page=1&limit=15`
+    `https://picsum.photos/v2/list?page=1&limit=10`
   );
   const { error, isPending, data } = useFetch(url);
   const [images, setImages] = useState([]);

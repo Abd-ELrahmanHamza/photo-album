@@ -1,11 +1,11 @@
 import React from "react";
 import { CellMeasurer, Masonry } from "react-virtualized";
 
-import keyMapper from "../helpers/keyMapper";
+import keyMapper from "../../helpers/keyMapper";
 
-import CardItem from "./CardItem/CardItem";
+import CardItem from "../CardItem/CardItem";
 
-import { columnWidth, defaultHeight, cache, cellPositioner } from "../globals";
+import { columnWidth, defaultHeight, cache, cellPositioner } from "../../globals";
 const MasonryComponent = ({ itemsWithSizes, setRef, pageCount }) => {
   const cellRenderer = ({ index, key, parent, style }) => {
     const { item } = itemsWithSizes[index];

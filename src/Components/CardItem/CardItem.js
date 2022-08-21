@@ -9,14 +9,15 @@ import { Link } from "react-router-dom";
 
 const CardItem = ({ item, height, index }) => {
   return (
-    <Link to={`/Image/${index}`}>
-      <img
-        src={item.download_url}
-        alt={item.author}
-        style={{ height: height, width: columnWidth, display: "block" }}
-        className="image"
-      ></img>
-    </Link>
+    <div className="image">
+      <Link to={`/Image/${index}`}>
+        <img
+          src={item.download_url}
+          alt={item.author}
+          style={{ height: height, width: columnWidth, display: "block" }}
+        ></img>
+      </Link>
+    </div>
   );
 };
 

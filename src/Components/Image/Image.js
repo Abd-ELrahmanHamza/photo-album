@@ -16,13 +16,8 @@ const Image = ({ images }) => {
               <img
                 src={images[index].download_url}
                 alt={images[index].author}
-                class="img-fluid"
-                alt="Responsive image"
+                className="img-fluid"
               ></img>
-              {/* <img
-                src={images[index].download_url}
-                alt={images[index].author}
-              ></img> */}
             </div>
           </div>
         </div>

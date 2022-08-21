@@ -33,9 +33,6 @@ const Album = ({ images, setImages }) => {
     `https://picsum.photos/v2/list?page=1&limit=10`
   );
 
-  // //   A state to store all fetched images
-  // const [images, setImages] = useState([]);
-
   //   useFetch is a custom hook used to fetch images
   const { error, isPending, data } = useFetch(url);
 

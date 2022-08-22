@@ -7,6 +7,15 @@ import { columnWidth } from "../../globals";
 // Import react router dom components
 import { Link } from "react-router-dom";
 
+/**
+ * Card item component
+ *
+ * @param {Object} item - Image object
+ * @param {number} index - Index of image
+ * @param {number} height - Height of image
+ *
+ * @returns {React.Component} - CardItem component
+ */
 const CardItem = ({ item, height, index }) => {
   return (
     <div className="image">

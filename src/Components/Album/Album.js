@@ -104,7 +104,7 @@ const Album = ({ images, setImages }) => {
           </div>
         )}
         {/* Load more button */}
-        <Button className="m-auto mb-3" onClick={shorten}>
+        <Button className="m-auto mb-3" variant="dark" onClick={shorten}>
           Load More
         </Button>
       </div>

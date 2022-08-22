@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: Components/NavBar/NavBar.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,38 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: Components/NavBar/NavBar.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Import bootstrap components
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 
+/**
+ * This is the navbar component
+ *
+ * @returns {React.ReactElement} &lt;NavBar>  NavBar component
+ */
+const NavBar = () => {
+  return (
+    &lt;Navbar bg="dark" variant="dark">
+      &lt;Container>
+        &lt;Navbar.Brand href="#home">Photo album masonry&lt;/Navbar.Brand>
+      &lt;/Container>
+    &lt;/Navbar>
+  );
+};
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+export default NavBar;
+</code></pre>
+        </article>
+    </section>
 
 
 

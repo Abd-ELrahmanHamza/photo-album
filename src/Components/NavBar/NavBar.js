@@ -2,6 +2,11 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 
+/**
+ * This is the navbar component
+ *
+ * @returns {React.ReactElement} <NavBar>  NavBar component
+ */
 const NavBar = () => {
   return (
     <Navbar bg="dark" variant="dark">

@@ -1,8 +1,19 @@
+// Import react-router-dom components
 import { useParams } from "react-router-dom";
+
+// Import components
 import NavBar from "../NavBar/NavBar";
 
+// Import bootstrap components
 import { Container } from "react-bootstrap";
 
+/**
+ * Single image page
+ *
+ * @param {Array} images - Array of images
+ *
+ * @returns {React.Component} - Image component
+ */
 const Image = ({ images }) => {
   const { index } = useParams();
   return (

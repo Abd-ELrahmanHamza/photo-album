@@ -22,7 +22,8 @@ import {
  * @param {Array} itemsWithSizes  - Array of items with sizes
  * @param {function} setRef  - Function to set ref
  * @param {number} pageCount - Number of pages
- * @returns
+ *
+ * @returns {React.Component} - Masonry component
  */
 const MasonryComponent = ({ itemsWithSizes, setRef, pageCount }) => {
   const cellRenderer = ({ index, key, parent, style }) => {

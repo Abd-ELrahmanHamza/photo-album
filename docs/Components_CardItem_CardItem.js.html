@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: App.js</title>
+    <title>JSDoc: Source: Components/CardItem/CardItem.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: App.js</h1>
+    <h1 class="page-title">Source: Components/CardItem/CardItem.js</h1>
 
     
 
@@ -26,45 +26,39 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// ts-check
+            <pre class="prettyprint source linenums"><code>// Import CSS
+import "./CardItem.css";
 
-// Import CSS
-import "./App.css";
+// Import globals
+import { columnWidth } from "../../globals";
 
-// Import Components
-import Album from "./Components/Album/Album";
-import Image from "./Components/Image/Image";
-
-// Import react router dom
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-// Import hooks
-import { useState } from "react";
+// Import react router dom components
+import { Link } from "react-router-dom";
 
 /**
- * This is the main component of the app
+ * Card item component
  *
- * @component
- * @returns {React.ReactElement}  &lt;App>  App  component
+ * @param {Object} item - Image object
+ * @param {number} index - Index of image
+ * @param {number} height - Height of image
+ *
+ * @returns {React.Component} - CardItem component
  */
-const App = () => {
-  //   A state to store all fetched images
-  const [images, setImages] = useState([]);
-
+const CardItem = ({ item, height, index }) => {
   return (
-    &lt;Router>
-      &lt;Routes>
-        &lt;Route
-          path="/"
-          element={&lt;Album images={images} setImages={setImages} />}
-        >&lt;/Route>
-        &lt;Route path="/Image/:index" element={&lt;Image images={images} />}>&lt;/Route>
-      &lt;/Routes>
-    &lt;/Router>
+    &lt;div className="image">
+      &lt;Link to={`/Image/${index}`}>
+        &lt;img
+          src={item.download_url}
+          alt={item.author}
+          style={{ height: height, width: columnWidth, display: "block" }}
+        >&lt;/img>
+      &lt;/Link>
+    &lt;/div>
   );
 };
 
-export default App;
+export default CardItem;
 </code></pre>
         </article>
     </section>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: App.js</title>
+    <title>JSDoc: Source: Components/Image/Image.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: App.js</h1>
+    <h1 class="page-title">Source: Components/Image/Image.js</h1>
 
     
 
@@ -26,45 +26,46 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// ts-check
+            <pre class="prettyprint source linenums"><code>// Import react-router-dom components
+import { useParams } from "react-router-dom";
 
-// Import CSS
-import "./App.css";
+// Import components
+import NavBar from "../NavBar/NavBar";
 
-// Import Components
-import Album from "./Components/Album/Album";
-import Image from "./Components/Image/Image";
-
-// Import react router dom
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-// Import hooks
-import { useState } from "react";
+// Import bootstrap components
+import { Container } from "react-bootstrap";
 
 /**
- * This is the main component of the app
+ * Single image page
  *
- * @component
- * @returns {React.ReactElement}  &lt;App>  App  component
+ * @param {Array} images - Array of images
+ *
+ * @returns {React.Component} - Image component
  */
-const App = () => {
-  //   A state to store all fetched images
-  const [images, setImages] = useState([]);
-
+const Image = ({ images }) => {
+  const { index } = useParams();
   return (
-    &lt;Router>
-      &lt;Routes>
-        &lt;Route
-          path="/"
-          element={&lt;Album images={images} setImages={setImages} />}
-        >&lt;/Route>
-        &lt;Route path="/Image/:index" element={&lt;Image images={images} />}>&lt;/Route>
-      &lt;/Routes>
-    &lt;/Router>
+    &lt;>
+      &lt;NavBar>&lt;/NavBar>
+      &lt;Container>
+        &lt;div className="d-flex">
+          &lt;div className="jumbotron jumbotron-fluid">
+            &lt;div className="container">
+              &lt;h1 className="display-4">Author : {images[index].author}&lt;/h1>
+              &lt;img
+                src={images[index].download_url}
+                alt={images[index].author}
+                className="img-fluid"
+              >&lt;/img>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/Container>
+    &lt;/>
   );
 };
 
-export default App;
+export default Image;
 </code></pre>
         </article>
     </section>

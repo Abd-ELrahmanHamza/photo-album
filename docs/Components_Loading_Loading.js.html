@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: App.js</title>
+    <title>JSDoc: Source: Components/Loading/Loading.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: App.js</h1>
+    <h1 class="page-title">Source: Components/Loading/Loading.js</h1>
 
     
 
@@ -26,45 +26,23 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>// ts-check
-
-// Import CSS
-import "./App.css";
-
-// Import Components
-import Album from "./Components/Album/Album";
-import Image from "./Components/Image/Image";
-
-// Import react router dom
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-// Import hooks
-import { useState } from "react";
+            <pre class="prettyprint source linenums"><code>// Import bootstrap components
+import Spinner from "react-bootstrap/Spinner";
 
 /**
- * This is the main component of the app
+ * Loading component
  *
- * @component
- * @returns {React.ReactElement}  &lt;App>  App  component
+ * @returns {React.Component} - Loading component
  */
-const App = () => {
-  //   A state to store all fetched images
-  const [images, setImages] = useState([]);
-
+function Loading() {
   return (
-    &lt;Router>
-      &lt;Routes>
-        &lt;Route
-          path="/"
-          element={&lt;Album images={images} setImages={setImages} />}
-        >&lt;/Route>
-        &lt;Route path="/Image/:index" element={&lt;Image images={images} />}>&lt;/Route>
-      &lt;/Routes>
-    &lt;/Router>
+    &lt;Spinner animation="border" role="status">
+      &lt;span className="visually-hidden">Loading...&lt;/span>
+    &lt;/Spinner>
   );
-};
+}
 
-export default App;
+export default Loading;
 </code></pre>
         </article>
     </section>

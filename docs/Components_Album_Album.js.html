@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Components/Album/Album.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Components/Album/Album.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Import Hooks
+import React, { useState, useEffect } from "react";
+
+// Import react-virtualized Components
+import ImageMeasurer from "react-virtualized-image-measurer";
+
+// Import helpers
+import keyMapper from "../../helpers/keyMapper";
+
+// Import globals
+import {
+  defaultHeight,
+  defaultWidth,
+  cache,
+  cellPositioner,
+  cellPositionerConfig,
+} from "../../globals";
+
+// Import Components
+import MasonryComponent from "../../Components/MasonryComponent/MasonryComponent";
+import NavBar from "../../Components/NavBar/NavBar";
+import Loading from "../../Components/Loading/Loading";
+
+// Import bootstrap components
+import { Button, Alert } from "react-bootstrap";
+
+// Import custom hooks
+import useFetch from "../../Hooks/useFetch";
+
+/**
+ * Album page
+ *
+ * @param {Array} images  - Array of images
+ * @param {function} setImages  - Function to set images
+ *
+ * @returns {React.Component} - ImageList component
+ */
+const Album = ({ images, setImages }) => {
+  //   A state that store the url to fetch data from
+  const [url, setUrl] = useState(
+    `https://picsum.photos/v2/list?page=1&amp;limit=10`
+  );
+
+  //   useFetch is a custom hook used to fetch images
+  const { error, isPending, data } = useFetch(url);
+
+  //   A state that store the index of next page to be fetched
+  const [pageCount, setPageCount] = useState(2);
+
+  useEffect(() => {
+    // Every change on data append it to images state
+    if (data !== null) {
+      setImages([...images, ...data]);
+    }
+  }, [data]);
+
+  let masonryRef = null;
+
+  // this shows how to significantly change the input array, if items will be only appended this recalculation is not needed
+  const shorten = () => {
+    cache.clearAll();
+    cellPositioner.reset(cellPositionerConfig);
+    masonryRef.clearCellPositions();
+    console.log(pageCount);
+    setUrl(`https://picsum.photos/v2/list?page=${pageCount}&amp;limit=10`);
+    setPageCount(pageCount + 1);
+  };
+
+  const setMasonry = (node) => (masonryRef = node);
+
+  return (
+    &lt;>
+      {/* Nav bar */}
+      &lt;NavBar>&lt;/NavBar>
+
+      {/* Album */}
+      &lt;div className="d-flex justify-content-center flex-column">
+        {/* If data still not fetched show spinner */}
+        {isPending &amp;&amp; (
+          &lt;div className="m-auto">
+            &lt;Loading>&lt;/Loading>
+          &lt;/div>
+        )}
+        {/* If there is an error in fetch show it */}
+        {error &amp;&amp; (
+          &lt;Alert key={"danger"} variant={"danger"}>
+            {error}
+          &lt;/Alert>
+        )}
+        {/* If data fetched show album */}
+        {images &amp;&amp; (
+          &lt;div style={{ width: "fit-content" }} className="m-auto">
+            &lt;ImageMeasurer
+              items={images}
+              image={(item) => item.image}
+              keyMapper={keyMapper}
+              onError={(error, item, src) => {
+                console.log(error, item, src);
+              }}
+              defaultHeight={defaultHeight}
+              defaultWidth={defaultWidth}
+            >
+              {({ itemsWithSizes }) => (
+                &lt;MasonryComponent
+                  key={1}
+                  setRef={setMasonry}
+                  pageCount={pageCount}
+                  itemsWithSizes={itemsWithSizes}
+                />
+              )}
+            &lt;/ImageMeasurer>
+          &lt;/div>
+        )}
+        {/* Load more button */}
+        &lt;Button className="m-auto mb-3" variant="dark" onClick={shorten}>
+          Load More
+        &lt;/Button>
+      &lt;/div>
+    &lt;/>
+  );
+};
+
+export default Album;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Album">Album</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#CardItem">CardItem</a></li><li><a href="global.html#Image">Image</a></li><li><a href="global.html#Loading">Loading</a></li><li><a href="global.html#MasonryComponent">MasonryComponent</a></li><li><a href="global.html#NavBar">NavBar</a></li><li><a href="global.html#useFetch">useFetch</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.11</a> on Mon Aug 22 2022 14:37:55 GMT+0200 (Eastern European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

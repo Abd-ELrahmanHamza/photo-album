@@ -43,6 +43,7 @@ const MasonryComponent = ({ itemsWithSizes, setRef, pageCount }) => {
       width={window.innerWidth - 50}
       keyMapper={keyMapper}
       ref={setRef}
+      autoHeight={true}
     />
   );
 };

@@ -27,6 +27,14 @@ import { Button, Alert } from "react-bootstrap";
 // Import custom hooks
 import useFetch from "../../Hooks/useFetch";
 
+/**
+ * Album page
+ *
+ * @param {Array} images  - Array of images
+ * @param {function} setImages  - Function to set images
+ *
+ * @returns {React.Component} - ImageList component
+ */
 const Album = ({ images, setImages }) => {
   //   A state that store the url to fetch data from
   const [url, setUrl] = useState(
